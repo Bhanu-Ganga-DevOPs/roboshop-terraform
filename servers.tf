@@ -139,3 +139,91 @@ resource "aws_instance" "dispatch" {
     Name = "dispatch"
   }
 }
+
+resource "aws_route53_record" "frontend" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "frontend-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.frontend.private_ip
+}
+
+resource "aws_route53_record" "user" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "user-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.user.private_ip
+}
+
+resource "aws_route53_record" "catalogue" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "catalogue-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.catalogue.private_ip
+}
+
+resource "aws_route53_record" "cart" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "cart-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.cart.private_ip
+}
+
+resource "aws_route53_record" "shipping" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "shipping-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.shipping.private_ip
+}
+
+resource "aws_route53_record" "payment" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "payment-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.payment.private_ip
+}
+
+resource "aws_route53_record" "mongodb" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "mongodb-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.mongodb.private_ip
+}
+
+resource "aws_route53_record" "mysql" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "mysql-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.mysql.private_ip
+}
+
+resource "aws_route53_record" "redis" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "redis-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.redis.private_ip
+}
+
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "rabbitmq-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.rabbitmq.private_ip
+}
+
+resource "aws_route53_record" "dispatch" {
+  zone_id = "Z02296781GEG0AJVP8QEV"
+  name    = "dispatch-dev.gangabhavanikatraparthi.online"
+  type    = "A"
+  ttl     = 30
+  records = aws_instance.dispatch.private_ip
+}
