@@ -145,7 +145,7 @@ resource "aws_route53_record" "frontend" {
   name    = "frontend-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.frontend.private_ip
+  records = [aws_instance.frontend.private_ip]
 }
 
 resource "aws_route53_record" "user" {
@@ -153,7 +153,7 @@ resource "aws_route53_record" "user" {
   name    = "user-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.user.private_ip
+  records = [aws_instance.user.private_ip]
 }
 
 resource "aws_route53_record" "catalogue" {
@@ -161,7 +161,7 @@ resource "aws_route53_record" "catalogue" {
   name    = "catalogue-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.catalogue.private_ip
+  records = [aws_instance.catalogue.private_ip]
 }
 
 resource "aws_route53_record" "cart" {
@@ -169,7 +169,7 @@ resource "aws_route53_record" "cart" {
   name    = "cart-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.cart.private_ip
+  records = [aws_instance.cart.private_ip]
 }
 
 resource "aws_route53_record" "shipping" {
@@ -177,7 +177,7 @@ resource "aws_route53_record" "shipping" {
   name    = "shipping-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.shipping.private_ip
+  records = [aws_instance.shipping.private_ip]
 }
 
 resource "aws_route53_record" "payment" {
@@ -185,7 +185,7 @@ resource "aws_route53_record" "payment" {
   name    = "payment-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.payment.private_ip
+  records = [aws_instance.payment.private_ip]
 }
 
 resource "aws_route53_record" "mongodb" {
@@ -193,7 +193,7 @@ resource "aws_route53_record" "mongodb" {
   name    = "mongodb-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.mongodb.private_ip
+  records = [aws_instance.mongodb.private_ip]
 }
 
 resource "aws_route53_record" "mysql" {
@@ -201,7 +201,7 @@ resource "aws_route53_record" "mysql" {
   name    = "mysql-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.mysql.private_ip
+  records = [aws_instance.mysql.private_ip]
 }
 
 resource "aws_route53_record" "redis" {
@@ -209,7 +209,7 @@ resource "aws_route53_record" "redis" {
   name    = "redis-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.redis.private_ip
+  records = [aws_instance.redis.private_ip]
 }
 
 resource "aws_route53_record" "rabbitmq" {
@@ -217,7 +217,7 @@ resource "aws_route53_record" "rabbitmq" {
   name    = "rabbitmq-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.rabbitmq.private_ip
+  records = [aws_instance.rabbitmq.private_ip]
 }
 
 resource "aws_route53_record" "dispatch" {
@@ -225,5 +225,5 @@ resource "aws_route53_record" "dispatch" {
   name    = "dispatch-dev.gangabhavanikatraparthi.online"
   type    = "A"
   ttl     = 30
-  records = aws_instance.dispatch.private_ip
+  records = [aws_instance.dispatch.private_ip]
 }
