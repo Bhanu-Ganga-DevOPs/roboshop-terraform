@@ -2,142 +2,122 @@ data "aws_ami" "centos" {
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
   owners           = ["973714476881"]
-}
 
-output "image_id" {
-   value = data.aws_ami.centos.image_id
+}
+data "aws_security_group" "allow-all-security-group" {
+  name = "allow-all"
 }
 
 variable "instance_type" {
-  default = var.instance_type
+  default = "t3.small"
 }
 
 
-# Terraform aws_instance creation
 
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "frontend"
   }
 }
 
-
-# Terraform aws_instance creation
-
-resource "aws_instance" "catalogue" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-
-  tags = {
-    Name = "catalogue"
-  }
-}
-
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "user" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "user"
   }
 }
 
-
-# Terraform aws_instance creation
-
-resource "aws_instance" "shipping" {
+resource "aws_instance" "catalogue" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
-    Name = "shipping"
+    Name = "catalogue"
   }
 }
-
-
-# Terraform aws_instance creation
 
 resource "aws_instance" "cart" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "cart"
   }
 }
 
+resource "aws_instance" "shipping" {
+  ami           = data.aws_ami.centos.image_id
+  instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
-# Terraform aws_instance creation
+  tags = {
+    Name = "shipping"
+  }
+}
 
 resource "aws_instance" "payment" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "payment"
   }
 }
 
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "mongodb" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "mongodb"
   }
 }
 
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "mysql" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "mysql"
   }
 }
 
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "redis" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "redis"
   }
 }
 
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "rabbitmq"
   }
 }
 
-
-# Terraform aws_instance creation
-
 resource "aws_instance" "dispatch" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.allow-all-security-group.id]
 
   tags = {
     Name = "dispatch"
