@@ -35,6 +35,27 @@ resource "aws_route53_record" "dns-record" {
 
 
 
+resource "null_resource" "provisioner" {
+
+  depends_on = [aws_instance.instance,aws_route53_record.dns-record]
+
+  for_each               = var.components
+
+  connection {
+    type     = "ssh"
+    user     = "centos"
+    password = "DevOps321"
+    host     = [aws_instance.instance[each.value["name"]].private_ip]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "rm -f roboshop-shell",
+      "git clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell.git",
+      "sudo bash ${each.value["name"]} "
+    ]
+  }
+}
 
 
 ################## Manual creation of resource and Route53 records creation using Count #################
