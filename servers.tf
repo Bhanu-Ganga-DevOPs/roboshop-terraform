@@ -37,17 +37,12 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.instance[each.value["name"]].private_ip
     }
 
-#    inline = [
-#      "rm -f roboshop-shell",
-#      "git clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell.git",
-#      "sudo bash ${each.value["name"]}  ${lookup(each.value,"password","null")} "
-#    ]
-
     inline = [
+      "echo -------- ${each.value["name"]} ---------",
       "rm -rf roboshop-shell",
       "git clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell",
       "cd roboshop-shell",
-      "sudo bash ${each.value["name"]}.sh   ${lookup(each.value,"password","null")} "
+      "sudo bash ${each.value["name"]}.sh  ${lookup(each.value,"password","null")} "
     ]
   }
 }
