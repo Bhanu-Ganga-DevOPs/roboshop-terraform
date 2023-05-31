@@ -18,10 +18,12 @@ components = {
   "shipping" = {
     name          = "shipping"
     instance_type = "t3.medium"
+    password      = "RoboShop@1"
   },
   "payment" = {
     name          = "payment"
     instance_type = "t3.small"
+    password      = "roboshop123"
   },
   "mongodb" = {
     name          = "mongodb"
@@ -30,6 +32,7 @@ components = {
   "mysql" = {
     name          = "mysql"
     instance_type = "t3.small"
+    password      = "RoboShop@1"
   },
   "redis" = {
     name          = "redis"
@@ -38,10 +41,8 @@ components = {
   "rabbitmq" = {
     name          = "rabbitmq"
     instance_type = "t3.small"
-  },
-  "dispatch" = {
-    name          = "dispatch"
-    instance_type = "t3.small"
+    password      = "roboshop123"
+
   }
 }
 
