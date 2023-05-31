@@ -24,23 +24,10 @@ resource "aws_instance" "instance" {
 }
 
 
-resource "aws_route53_record" "dns-record" {
-  for_each               = var.components
-  zone_id                = "Z02296781GEG0AJVP8QEV"
-  name                   = "${each.value["name"]}-dev.gangabhavanikatraparthi.online"
-  type                   = "A"
-  ttl                    = 30
-  records                = [aws_instance.instance[each.value["name"]].private_ip]
-}
-
-
-
 resource "null_resource" "provisioner" {
 
-  depends_on = [aws_instance.instance,aws_route53_record.dns-record]
-
+  depends_on = [aws_instance.instance, aws_route53_record.dns-record]
   for_each   = var.components
-
   provisioner "remote-exec" {
 
     connection {
@@ -50,13 +37,31 @@ resource "null_resource" "provisioner" {
       host     = aws_instance.instance[each.value["name"]].private_ip
     }
 
+#    inline = [
+#      "rm -f roboshop-shell",
+#      "git clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell.git",
+#      "sudo bash ${each.value["name"]}  ${lookup(each.value,"password","null")} "
+#    ]
+
     inline = [
-      "rm -f roboshop-shell",
-      "git clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell.git",
-      "sudo bash ${each.value["name"]}  ${lookup(each.value,"password","null")} "
+      "rm -rf roboshop-shell",
+      "git clone clone https://github.com/Bhanu-Ganga-DevOPs/roboshop-shell",
+      "cd roboshop-shell",
+      "sudo bash ${each.value["name"]}.sh   ${lookup(each.value,"password","null")} "
     ]
   }
 }
+
+
+resource "aws_route53_record" "dns-record" {
+  for_each               = var.components
+  zone_id                = "Z02296781GEG0AJVP8QEV"
+  name                   = "${each.value["name"]}-dev.gangabhavanikatraparthi.online"
+  type                   = "A"
+  ttl                    = 30
+  records                = [aws_instance.instance[each.value["name"]].private_ip]
+}
+
 
 
 ################## Manual creation of resource and Route53 records creation using Count #################
